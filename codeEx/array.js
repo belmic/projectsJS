@@ -2,3 +2,5 @@
 // new line
 console.log("Arrays");
 //
+//new new
+//

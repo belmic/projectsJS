@@ -1,50 +1,33 @@
 function processData(input) {
     //Enter your code here
     var data = transformData(input);
-    var res = {
-        index: [],
-        value: []
-    };
-    var result;
+    var unSorted = {
+         index: 0,
+         value: 0
+            };
 
-    for(i = 0; i < data[1].length; i++){
-        if (data[1][i]>data[1][i+1]){
+    for(i = 0; i < data.length-1; i++){
+        if (data[i]>data[i+1]){
 
+            unSorted.index = i+1;
+            unSorted.value = data[i+1];
 
-            for(j=i+1; j =>0; j--){
-                if(data[1][j-1] > data[1][i]){
-                        data[1][j] = data[1][j-1];
-                //result = data[1].join(" ");
+            for(j = unSorted.index; j =>0; j--){ //2 1 0
+                if(data[j-1] > unSorted.value){
+                        data[j] = data[j-1];
                 }else{
-                      data[1][j] = data[1][i];
+                      data[j] = unSorted.value;
                     break;
                 }
+              }
+        console.log(data.join(" "));
 
-            console.log(data[1]);
-            //res.index.push(i+1);
-            //res.value.push(data[1][i+1]);
-        }
         }else{
-            console.log(data[1]);
+            console.log(data.join(" "));
         }
+
     }
-    //console.log(res);
-    //for (k = 0; k < res.index.length; k++){
 
-      //  for(j=res.index[k]; j => 0; j--){
-      //      if(data[1][j-1] > res.value[k]){
-      //          data[1][j] = data[1][j-1];
-      //          result = data[1].join(" ");
-      //          console.log(result);
-      //      }else{
-      //          data[1][j] = res.value[k];
-      //          result = data[1].join(" ");
-      //          console.log(result);
-      //          break;
-      //      }
-
-    //}
-  //}
 }
 function transformData(_data){
     // function transform data to multi-dimensial array;
@@ -67,7 +50,7 @@ function transformData(_data){
            }
     }
 
-    return(res);
+    return(res[1]);
 
 }
 

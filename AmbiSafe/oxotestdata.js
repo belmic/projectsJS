@@ -1030,8 +1030,9 @@ for (let i = 0; i < testData[0].length; i++){
   let y  = testData[0][i][1];
   let xo = testData[0][i][2];
 
-  vFinal[y].insert(x,xo);
-//console.log(xo);
+  vFinal[y].splice(x,1,xo);
+
+console.log(y);
 }
 console.log(testData[0]);
 console.log(vFinal);

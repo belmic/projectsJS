@@ -1042,9 +1042,10 @@ function arrayCheck(a) {
 ///Code execution
 
 var countDraw = 0;
-var vFinal = [[0,0,0],[0,0,0],[0,0,0]];
 
 for (let n = 0; n <testData.length; n++){
+
+var vFinal = [[0,0,0],[0,0,0],[0,0,0]];
 
   for (let i = 0; i < testData[n].length; i++){
 
@@ -1060,6 +1061,7 @@ for (let n = 0; n <testData.length; n++){
 
   if(!win){
     countDraw++
+    console.log(vFinal);
   }
 }
 

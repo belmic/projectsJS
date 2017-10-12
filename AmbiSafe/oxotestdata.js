@@ -1002,39 +1002,65 @@ let testData =
   [[0,2,"X"],[2,1,"O"],[0,1,"X"],[1,1,"O"],[2,2,"X"],[1,2,"O"],[1,0,"X"],[0,0,"O"],[2,0,"X"]],
   [[1,0,"X"],[1,1,"O"],[2,0,"X"],[2,1,"O"],[0,0,"X"]]
 ];
-///
-Array.prototype.insert = function ( index, item ) {
-    this.splice( index, 0, item );
-};
+///function
+function transformArray(_arr){
 
-function Matrix(m, n, d){
-    var mat = Array.apply(null, new Array(m)).map(
-        Array.prototype.valueOf,
-        Array.apply(null, new Array(n)).map(
-            function() {
-               return d;
-            }
-        )
-    );
-    return mat;
+  let old_size = _arr.length;
+  let new_size =  old_size * 2 + 2;
+  let res = [];
+
+  for (let i = 0; i < new_size-2; i++){
+    if(i < old_size){
+      res[i] = _arr[i];
+
+    }else if (i => old_size && i < (new_size - 2)) {
+      let j = i - old_size;
+      res[i] = [_arr[0][j], _arr[1][j], _arr[2][j]];
+
+     }
+  }
+  res[6] = [_arr[0][0], _arr[1][1], _arr[2][2]];
+  res[7] = [_arr[0][2], _arr[1][1], _arr[2][0]];
+
+return res;
 }
+
+function arrayCheck(a) {
+    var size = a.length;
+
+    for (let i = 0; i < size; i++){
+
+      if (a[i].join("") == "XXX" || a[i].join("") == "OOO"){
+        return true
+      }
+    }
+        return false
+
+};
 
 
 ///Code execution
 
-round = testData[0];
-var vFinal = Matrix(3,3,0);
-for (let i = 0; i < testData[0].length; i++){
+var countDraw = 0;
+var vFinal = [[0,0,0],[0,0,0],[0,0,0]];
 
-  let x  = testData[0][i][0];
-  let y  = testData[0][i][1];
-  let xo = testData[0][i][2];
+for (let n = 0; n <testData.length; n++){
 
-  vFinal[y].splice(x,1,xo);
+  for (let i = 0; i < testData[n].length; i++){
 
-console.log(y);
+    let x  = testData[n][i][0];
+    let y  = testData[n][i][1];
+    let xo = testData[n][i][2];
+
+    vFinal[y].splice(x,1,xo);
+  }
+
+  var newArr = transformArray(vFinal);
+  var win = arrayCheck(newArr);
+
+  if(!win){
+    countDraw++
+  }
 }
-console.log(testData[0]);
-console.log(vFinal);
 
-//1. Design of final statement
+console.log(countDraw);

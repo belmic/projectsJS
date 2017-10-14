@@ -20,5 +20,4 @@ function transformData(_data){
     }
 
     return(res);
-
 }
